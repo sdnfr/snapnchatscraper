@@ -195,9 +195,13 @@ def DownloadTriples(triples,src,dest):
             fileextension = ".jpg"
         finalPath = os.path.join(destPath,filename+fileextension)
         url = item[4]
-        snapchatResponse = requests.post(url)
-        r = requests.get(snapchatResponse.content)
-        open(finalPath, 'wb').write(r.content)
+
+        try:
+            snapchatResponse = requests.post(url)
+            r = requests.get(snapchatResponse.content)
+            open(finalPath, 'wb').write(r.content)
+        except:
+            print("could not import: " + filename + " with link " + url)
 
 
 
