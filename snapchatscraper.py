@@ -1,3 +1,8 @@
+"""
+Example usage: 
+
+python snapchatscraper.py -path:.\mydata~1713821924916.zip -dest:.\data
+"""
 import os
 import sys
 import re
@@ -65,7 +70,7 @@ def DownloadAll(src, dest):
                     year = yearmonth[0:4]
                 if (i==2):
                     type = td.text()
-                if (i==3):
+                if (i==4):
                     ref = td("a").attr["href"]
                     if ref is not None:
                         ref = ref.replace("javascript:downloadMemories('","")
@@ -91,9 +96,9 @@ def DownloadTriples(triples,src,dest):
         print("downloading " + item[3] + " " + str(imageCounter) + " of total of " + str(count) + " files...")
         destPath = os.path.join(dest,item[0],item[1])
         filename = item[2] + "_" + str(imageCounter)
-        if item[3]=="VIDEO":
+        if item[3]=="Video":
             fileextension = ".mp4"
-        if item[3]=="PHOTO":
+        if item[3]=="Image":
             fileextension = ".jpg"
         finalPath = os.path.join(destPath,filename+fileextension)
         url = item[4]
